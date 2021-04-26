@@ -1,0 +1,61 @@
+<div class="p-16">
+
+  <h4 class="text-3xl text-purple-700">All Scenes</h4>
+  <ul class="space-y-8 divide-y divide-dashed">
+  {{ collection:articles scope="scene" }}
+      <li class="pt-4">
+        <a class="text-lg font-bold text-blue-700" href="{{ url }}">{{ scene:title }}</a>
+
+        <br/><br/>Authors:<br/>
+        <span class="py-2">{{ scene:authors }} {{ title }}, {{ /scene:authors }}</span>
+        {{ scene:authors }}
+      </li>
+  {{ /collection:articles }}
+  </ul>
+
+  <hr class="mt-16 pb-16"/>
+
+  <h4 class="text-3xl text-purple-700">Scenes with (authors:contains) Neo</h4>
+  <ul class="space-y-8 divide-y divide-dashed">
+  {{ collection:articles authors:contains="9f7ff95d-c345-4440-9c7c-507feb7f4868" as="entries" }}
+    {{ if no_results }}
+      No results.
+    {{ /if }}
+
+    {{ entries }}
+    <li>
+      <span class="text-lg font-bold">{{ title }}</span>
+      <span class="text-indigo-700">{{ authors }} {{ title }} {{ /authors }}</span>
+    </li>
+    {{ /entries }}
+  {{ /collection:articles }}
+  </ul>
+
+  <hr class="mt-16 pb-16"/>
+
+  <h4 class="text-3xl text-purple-700">Scenes with (authors:in) Neo</h4>
+  <ul class="space-y-8 divide-y divide-dashed">
+  {{ collection:articles authors:in="9f7ff95d-c345-4440-9c7c-507feb7f4868" as="entries" }}
+    {{ if no_results }}
+      No results.
+    {{ /if }}
+
+    {{ entries }}
+    <li>
+      <span class="text-lg font-bold">{{ title }}</span>
+      <span class="text-indigo-700">{{ authors }} {{ title }} {{ /authors }}</span>
+    </li>
+    {{ /entries }}
+  {{ /collection:articles }}
+  </ul>
+
+  <hr class="mt-16 pb-16"/>
+  <h4 class="text-3xl text-purple-700">Actor (get_content) Neo</h4>
+
+  {{ get_content from="9f7ff95d-c345-4440-9c7c-507feb7f4868" }}
+    <span>{{ title }}</span><br/>
+    <span>{{ id }}</span>
+  {{ /get_content }}
+
+
+</div>
